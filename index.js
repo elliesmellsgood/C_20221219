@@ -65,7 +65,7 @@ app.post('/', async (req, res) => {
       res.status(400).json({ success: false, message: `${key === 'account' ? '帳號' : '信箱'}已被使用` })
     } else {
       // 可能會有預想不到的錯誤，因此建議加上狀態碼 500
-      res.status(500).json({ sucess:  false, message: '未知錯誤' })
+      res.status(500).json({ sucess: false, message: '未知錯誤' })
     }
   }
 })
@@ -126,7 +126,6 @@ app.delete('/:id', async (req, res) => {
   }
 })
 
-
 // patch 部分資料更新
 // 編輯使用者資料/帳密
 // 補充：put 是整組修改（較少用）
@@ -148,6 +147,8 @@ app.patch('/:id', async (req, res) => {
       res.status(400).json({ success: false, message: 'ID 格式不正確' })
     } else if (error.name === 'ValidationError') {
       // 取出第一個驗證失敗的欄位名稱
+      // Object.keys 抓出有錯誤的 keys
+      console.log(error)
       const key = Object.keys(error.errors)[0]
       // 用取出的名稱取錯誤訊息
       const message = error.errors[key].message

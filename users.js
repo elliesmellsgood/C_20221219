@@ -45,5 +45,5 @@ const userSchema = new Schema({
 
 // 把上面定義好的東西轉成欄位可以用的 model
 // users 的這個 collection 要使用上面定義的欄位設定(userSchema) 再用 model 語法將它匯出
-// model('collection 名稱（資料表）', shcema)
+// model('collection 名稱（資料表）', shcema) =>負責跟資料庫做溝通
 export default model('users', userSchema)
